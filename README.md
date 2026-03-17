@@ -6,3 +6,5 @@ Context:
 Mr. Anndy is an expert in computer vision. He decides to organize (n) seminars for students who are interested in this field. However, each student has a different timetable, and the availability of rooms is limited.
 
 To address this, he collects students’ timetables and the availability of rooms. By passing this data into the program, Mr. Anndy can generate a schedule for each seminar such that all registered students can attend, or at least maximize the number of students who are able to participate.
+
+Throughout this project, I only use AI to generate the dataset for me. The algorithm and implementation is performed by my self.
