@@ -1,25 +1,23 @@
 #pragma once
 
-#include <string> 
-#include <vector> 
+#include <string>
+#include <vector>
 
-using namespace std;
-
-class student{
-    public:
-        int id;
-        vector<string> busy_slot;
+class Student {
+public:
+    int id;
+    std::vector<std::string> busy_slot;
 };
 
-class room{
-    public:
-        string roomId;
-        int capacity;
-        vector<string> availableSlot;
+class Room {
+public:
+    std::string roomId;
+    int capacity;
+    std::vector<std::string> availableSlot;
 };
 
-class seminar{
-    public:
-        string seminarId;
-        vector<int> studentId;
+class Seminar {
+public:
+    std::string seminarId;
+    std::vector<int> studentId;
 };
