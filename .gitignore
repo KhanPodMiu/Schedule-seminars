@@ -42,5 +42,7 @@
 
 .DS_Store
 build/
+bin/
+lib/
 *.o
 *.out
