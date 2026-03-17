@@ -1,0 +1,11 @@
+room_id,capacity,available_slots
+E101,40,"Mon_9;Mon_14;Tue_9"
+E102,35,"Mon_9;Tue_14;Wed_9"
+E103,50,"Mon_14;Tue_9;Wed_14"
+E104,30,"Mon_9;Wed_9"
+E105,45,"Tue_9;Tue_14;Wed_14"
+E106,60,"Mon_14;Tue_14"
+E107,25,"Mon_9;Tue_9"
+E108,55,"Wed_9;Wed_14"
+E109,35,"Mon_14;Tue_9"
+E110,40,"Tue_14;Wed_9"
