@@ -1,6 +1,10 @@
 #include <iostream>
+#include "../include/structure.h"
 
-int main(int argc, char *argv[])
-{
-    std::cout << "Hello world!" << std::endl;
+using namespace std;
+
+int main() {
+
+
+    return 0;
 }
