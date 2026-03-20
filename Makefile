@@ -1,39 +1,51 @@
-
 CXX         := g++
 CXX_FLAGS   := -Wall -Wextra -ggdb -MMD -MP
 
 BIN         := bin
 SRC         := src
-INCLUDE     := include
 LIB         := lib
-LIBRARIES   := 
+INCLUDE     := include
+
 EXECUTABLE  := main
 
 SRC_EXT     := cpp
 OBJ_EXT     := o
 DEP_EXT     := d
 
-SOURCES     := $(wildcard $(SRC)/*.$(SRC_EXT))
-OBJECTS     := $(SOURCES:$(SRC)/%.$(SRC_EXT)=$(BIN)/%.$(OBJ_EXT))
-DEPS        := $(OBJECTS:.$(OBJ_EXT)=.$(DEP_EXT))
+# 🔥 Get all source files from src/ and lib/
+SOURCES := $(wildcard $(SRC)/*.$(SRC_EXT)) \
+           $(wildcard $(LIB)/*.$(SRC_EXT))
+
+# 🔥 Convert to object files in bin/
+OBJECTS := $(patsubst %.$(SRC_EXT),$(BIN)/%.$(OBJ_EXT),$(notdir $(SOURCES)))
+
+DEPS := $(OBJECTS:.$(OBJ_EXT)=.$(DEP_EXT))
 
 .PHONY: all clean run
 
+# ===== BUILD =====
 all: $(BIN)/$(EXECUTABLE)
 
-run: clean all
-	clear
-	./$(BIN)/$(EXECUTABLE)
-
 $(BIN)/$(EXECUTABLE): $(OBJECTS)
-	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -L$(LIB) $^ -o $@ $(LIBRARIES)
+	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) $^ -o $@
 
+# ===== COMPILE src =====
 $(BIN)/%.$(OBJ_EXT): $(SRC)/%.$(SRC_EXT)
 	@mkdir -p $(BIN)
 	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -c $< -o $@
 
-clean:
-	-rm -f $(BIN)/*.$(OBJ_EXT) $(BIN)/*.$(DEP_EXT) $(BIN)/$(EXECUTABLE)
+# ===== COMPILE lib =====
+$(BIN)/%.$(OBJ_EXT): $(LIB)/%.$(SRC_EXT)
+	@mkdir -p $(BIN)
+	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -c $< -o $@
 
+# ===== RUN =====
+run: all
+	./$(BIN)/$(EXECUTABLE)
+
+# ===== CLEAN =====
+clean:
+	rm -rf $(BIN)
+
+# ===== AUTO DEPENDENCIES =====
 -include $(DEPS)
-        
